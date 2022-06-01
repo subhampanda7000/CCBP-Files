@@ -23,8 +23,6 @@ function onChooseRock() {
     goButtonEl.classList.remove('d-none');
     resultEl.textContent = "";
     buttonContainerEl.classList.add("d-none");
-    rspMainContainerEl.replaceChild(resultImgContainerEl, res2ContainerEl);
-
     inputValue = 0;
 
 }
@@ -36,7 +34,6 @@ function onChoosePaper() {
     goButtonEl.classList.remove('d-none');
     resultEl.textContent = "";
     buttonContainerEl.classList.add("d-none");
-    rspMainContainerEl.replaceChild(resultImgContainerEl, res2ContainerEl);
     inputValue = 1;
 }
 
@@ -47,13 +44,13 @@ function onChooseScissor() {
     goButtonEl.classList.remove('d-none');
     resultEl.textContent = "";
     buttonContainerEl.classList.add("d-none");
-    rspMainContainerEl.replaceChild(resultImgContainerEl, res2ContainerEl);
     inputValue = 2;
 }
 
 resultEl.style.color = "white";
 
 function onGo() {
+
     spinnerEl.classList.remove("d-none");
     setTimeout(function() {
         let compInput = Math.floor(Math.random() * 3);
@@ -61,7 +58,9 @@ function onGo() {
             resultEl.textContent = "Please Choose Anyone !!!";
             resultEl.style.color = "pink";
         } else {
-            rspMainContainerEl.replaceChild(res2ContainerEl, resultImgContainerEl);
+            rspMainContainerEl.removeChild(resultImgContainerEl);
+
+
             res2ContainerEl.classList.remove("d-none");
             if (inputValue === 0) {
                 user.src = "https://res.cloudinary.com/df2kcpkgv/image/upload/v1654036509/rock_lqqgym.jpg";
@@ -81,12 +80,13 @@ function onGo() {
             if (compInput === 2) {
                 comp.src = "https://res.cloudinary.com/df2kcpkgv/image/upload/v1654036508/scissor_u4bvbp.png";
             }
+
             if (inputValue === compInput) {
                 resultEl.textContent = "Match Draw !!!";
                 resultEl.style.color = "#FEE715FF";
                 inputValue = -1;
             } else if ((inputValue === 0 && compInput === 2) || (inputValue === 1 && compInput === 0) || (inputValue === 2 && compInput === 1)) {
-                resultEl.textContent = " You Are The Winner !!!";
+                resultEl.textContent = " Congratulations !!!";
                 resultEl.style.color = "lightgreen";
                 inputValue = -1;
             } else {
@@ -99,10 +99,10 @@ function onGo() {
 
         }
         spinnerEl.classList.add("d-none");
-        res2ContainerEl.appendChild(user);
-        res2ContainerEl.appendChild(comp);
         buttonContainerEl.classList.add("d-none");
     }, 1000);
+
+
 
 }
 
@@ -110,10 +110,13 @@ function onReset() {
     rockImgEl.classList.add("d-none");
     paperImgEl.classList.add("d-none");
     scissorImgEl.classList.add("d-none");
-    goButtonEl.classList.remove('d-none');
     resultEl.textContent = "";
+    rspMainContainerEl.appendChild(resultImgContainerEl);
     res2ContainerEl.classList.add("d-none");
     buttonContainerEl.classList.remove("d-none");
     goButtonEl.classList.add('d-none');
     inputValue = -1;
+
+
+
 }
