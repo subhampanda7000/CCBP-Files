@@ -107,15 +107,16 @@ function onGo() {
 }
 
 function onReset() {
-    rockImgEl.classList.add("d-none");
-    paperImgEl.classList.add("d-none");
-    scissorImgEl.classList.add("d-none");
-    resultEl.textContent = "";
+    rockImgEl.classList.remove("d-none");
+    paperImgEl.classList.remove("d-none");
+    scissorImgEl.classList.remove("d-none");
     rspMainContainerEl.appendChild(resultImgContainerEl);
     res2ContainerEl.classList.add("d-none");
     buttonContainerEl.classList.remove("d-none");
     goButtonEl.classList.add('d-none');
     inputValue = -1;
+    resultEl.textContent = "Choose One !!!";
+    resultEl.style.color = "white";
 
 
 
